@@ -1,0 +1,19 @@
+# Jupyter notebooks are stored WITHOUT outputs, via nbstripout.
+#
+# The filter only runs once each clone has installed it:
+#     pip install -e ".[dev]"
+#     nbstripout --install --attributes .gitattributes
+#
+# A .pre-commit-config.yaml hook is configured as a fallback for anyone who
+# skips that step. Without either, notebook outputs would be committed.
+#
+# The next three lines are written verbatim as `nbstripout --install` expects
+# them (it matches each line exactly, and re-appends any it cannot find), so
+# re-running the install is a genuine no-op. Do not merge them into one line.
+*.ipynb filter=nbstripout
+*.zpln filter=nbstripout
+*.ipynb diff=ipynb
+
+# Treat notebooks as binary for diff/merge purposes so git never attempts a
+# line-wise merge of JSON.
+*.ipynb -text

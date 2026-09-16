@@ -1,0 +1,27 @@
+# Fallback guard: strips notebook outputs at commit time even if the
+# nbstripout git filter (.gitattributes) was never installed in this clone.
+#
+#     pip install -e ".[dev]"
+#     pre-commit install
+repos:
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        # media/ is untracked by design; this catches an accidental `git add -f`
+        # of an 84 MB animation.
+        args: ["--maxkb=2048"]
+      # Notebooks are nbstripout's business. data/ and figures/ hold recorded
+      # results and must stay byte-for-byte as produced -- a hook that appends
+      # a newline to a regression baseline is a hook editing scientific data.
+      - id: end-of-file-fixer
+        exclude: '^(data|figures)/|\.ipynb$'
+      - id: trailing-whitespace
+        exclude: '^(data|figures)/|\.ipynb$'
+      - id: check-yaml
+      - id: check-toml

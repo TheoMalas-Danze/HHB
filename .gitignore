@@ -1,0 +1,54 @@
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# Virtual environments (the project is developed against a global
+# /opt/homebrew/bin/python3.11, but don't trip over a local venv either)
+.venv/
+venv/
+env/
+
+# ---------------------------------------------------------------------------
+# Jupyter
+# ---------------------------------------------------------------------------
+# Outputs are stripped by nbstripout (see .gitattributes), not ignored --
+# the .ipynb files themselves ARE tracked.
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# ---------------------------------------------------------------------------
+# Generated artefacts
+# ---------------------------------------------------------------------------
+# data/ IS tracked on purpose: data/kerr/*.npz are the small benchmark records
+# that the sweeps compare against, i.e. the regression baseline.
+# figures/cat/ IS tracked on purpose: those are paper figures.
+# Everything the sweep scripts regenerate is not:
+figures/kerr/
+
+# ---------------------------------------------------------------------------
+# Media -- 84 MB of Wigner-function animations, regenerable from the notebooks.
+# Kept locally, deliberately not tracked: the source tree is ~3 MB and should
+# stay that way. See README section "Media".
+# ---------------------------------------------------------------------------
+media/
+
+# ---------------------------------------------------------------------------
+# macOS
+# ---------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ---------------------------------------------------------------------------
+# Editors / tooling
+# ---------------------------------------------------------------------------
+# Claude Code: settings.json IS tracked and shared; personal overrides are not.
+.claude/settings.local.json
+.vscode/
+.idea/

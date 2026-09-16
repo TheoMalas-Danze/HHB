@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hhb"
+version = "0.1.0"
+description = "Husimi Harmonic Balance: periodic NESS of driven-dissipative bosonic systems without Fock-space truncation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Théo Malas-Danzé", email = "theo.malas-danze@alice-bob.com" }]
+keywords = [
+    "quantum-optics",
+    "harmonic-balance",
+    "lindblad",
+    "husimi",
+    "moment-closure",
+    "cat-qubit",
+]
+# NB: no "License ::" classifier -- it is mutually exclusive with the PEP 639
+# `license` field above, and setuptools rejects the combination.
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+# The solver modules themselves need only these four.
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "sympy>=1.12",
+    "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+# Exact truncated-Fock Lindblad reference. Needed by the Hellinger sweeps and
+# the Kerr test notebooks, NOT by the solvers.
+bench = ["dynamiqs>=0.3", "jax>=0.4"]
+# Notebook output stripping (see the nbstripout section of the README).
+dev = ["nbstripout>=0.7", "pre-commit>=3.5"]
+nb = ["jupyterlab>=4.0", "ipykernel>=6.25"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

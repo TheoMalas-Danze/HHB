@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "permissions": {
+    "allow": [
+      "Read",
+
+      "Bash(/opt/homebrew/bin/python3.11 *)",
+      "Bash(PYTHONPATH=* /opt/homebrew/bin/python3.11 *)",
+      "Bash(python3 *)",
+      "Bash(python3.11 *)",
+      "Bash(nbstripout *)",
+      "Bash(pre-commit run*)",
+
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git ls-files*)",
+      "Bash(git rev-parse*)",
+      "Bash(git blame*)",
+
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(du *)",
+      "Bash(file *)",
+      "Bash(md5 *)",
+      "Bash(md5sum *)",
+      "Bash(jq *)",
+      "Bash(mkdir -p *)"
+    ],
+    "deny": [
+      "Bash(rm -rf /*)",
+      "Bash(git push*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -fd*)"
+    ]
+  }
+}
